@@ -1,0 +1,18 @@
+POST http://localhost:8080/api/sessions/register 
+Content-Type: application/json
+
+{
+    "first_name": "fede",
+    "last_name": "Osandón",
+    "email": "f@gmail.com",
+    "password": "123456"
+}
+
+###
+POST http://localhost:8080/api/sessions/login 
+Content-Type: application/json
+
+{
+    "email": "f@gmail.com",
+    "password": "123456"
+}
