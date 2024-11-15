@@ -1,13 +1,15 @@
 const express       = require('express')
-const userRouter    = require('./routes/api/users.router.js')
+// const userRouter    = require('./routes/api/users.router.js')
 const viewsRouter    = require('./routes/views.router.js')
 const sessionsRouter    = require('./routes/api/sessions.router.js')
-const { connectDb } = require('./config.js')
+const pruebasRouter    = require('./routes/api/pruebas.router.js')
+const { connectDb } = require('./config')
 const handlebars    = require('express-handlebars')
 const session       = require('express-session')
 const passport = require('passport')
 const { initializePassport } = require('./utils/initializePassport.js')
 const cookie = require('cookie-parser')
+const UserRouter  = require('./routes/api/usersClass.router.js')
 // import session from 'express-session'
 
 const app = express()
@@ -37,10 +39,16 @@ app.set('view engine', 'handlebars')
 
 //     res.send('Imagen subida')
 // })
+const userRouter = new UserRouter()
 
 app.use('/api/sessions', sessionsRouter)
 app.use('/', viewsRouter)
-// app.use('/api/users', userRouter)
+app.use('/api/users', userRouter.getRouter())
+app.use('/pruebas', pruebasRouter)
+
+app.use('*', (req,res)=>{
+    res.status(404).send('no existe esta url 404')
+})
 // app.use('/api/products', ()=>{})
 // app.use('/api/carts', ()=>{})
 // app.use('/api/tickets', ()=>{})
