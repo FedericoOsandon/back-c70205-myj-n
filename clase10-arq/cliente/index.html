@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Comisión 70205</h1>
+    <div id="list-users"></div>
+    <script>
+        const listUsers = document.querySelector('#list-users')
+        fetch('http://localhost:8080/api/users')
+        .then(resp => resp.json())
+        .then(resp => console.log(resp))
+    </script>
+</body>
+</html>
